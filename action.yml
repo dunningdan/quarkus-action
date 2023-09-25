@@ -16,7 +16,7 @@ runs:
       run: curl -Ls https://sh.jbang.dev | bash -s - app setup
       shell: bash
     - id: action
-      run: ~/.jbang/bin/jbang --repos 'github=https://maven.pkg.github.com/my/action-github-repository/' --repos 'mavencentral' org.acme:my-github-action:999-SNAPSHOT
+      run: ~/.jbang/bin/jbang --repos 'github=https://maven.pkg.github.com/dunningdan/quarkus-action/' --repos 'mavencentral' org.acme:my-github-action:999-SNAPSHOT
       shell: bash
       env:
         JSON_INPUTS: ${{ toJSON(inputs) }}
