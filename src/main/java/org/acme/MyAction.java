@@ -9,22 +9,22 @@ import java.util.Map;
 
 public class MyAction {
 
-    @Action
-    void test() {
-        System.out.println("Hello from Quarkus GitHub Action");
-    }
-
-    @Action
-    void action(Context context) {
-        String runnerOs = context.getRunnerOs();
-
-        context.print();
-    }
+//    @Action
+//    void test() {
+//        System.out.println("Hello from Quarkus GitHub Action");
+//    }
+//
+//    @Action
+//    void action(Context context) {
+//        String runnerOs = context.getRunnerOs();
+//
+//        context.print();
+//    }
 
 
     @Action
     void action(Inputs inputs) {
-
+        System.out.println("Hello from Quarkus GitHub Action");
         // Iterate through the map and print each entry
         for (Map.Entry<String, String> entry : inputs.all().entrySet()) {
             System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
@@ -52,5 +52,7 @@ public class MyAction {
         } else {
             System.err.println("The specified path is not a directory.");
         }
+        System.out.println("End from Quarkus GitHub Action");
+
     }
 }
