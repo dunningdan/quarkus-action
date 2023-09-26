@@ -61,7 +61,39 @@ public class MyAction {
 
         try {
             // Get the current working directory
-            Path currentDirectory = Paths.get("/");
+            Path currentDirectory = Paths.get("/home");
+
+            System.out.println("Current Directory: " + currentDirectory);
+            Stream<Path> c = Files.list(currentDirectory);
+            System.out.println(c.count());
+
+            // List files in the current directory
+            try (Stream<Path> files = Files.list(currentDirectory)) {
+                files.forEach(path -> System.out.println(path.getFileName()));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            // Get the current working directory
+            Path currentDirectory = Paths.get("/usr");
+
+            System.out.println("Current Directory: " + currentDirectory);
+            Stream<Path> c = Files.list(currentDirectory);
+            System.out.println(c.count());
+
+            // List files in the current directory
+            try (Stream<Path> files = Files.list(currentDirectory)) {
+                files.forEach(path -> System.out.println(path.getFileName()));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            // Get the current working directory
+            Path currentDirectory = Paths.get("/tmp");
 
             System.out.println("Current Directory: " + currentDirectory);
             Stream<Path> c = Files.list(currentDirectory);
