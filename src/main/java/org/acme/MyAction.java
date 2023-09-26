@@ -25,6 +25,7 @@ public class MyAction {
     @Action
     void action(Inputs inputs) {
         System.out.println("Hello from Quarkus GitHub Action");
+        System.out.println("Size: " + inputs.all().size());
         // Iterate through the map and print each entry
         for (Map.Entry<String, String> entry : inputs.all().entrySet()) {
             System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
