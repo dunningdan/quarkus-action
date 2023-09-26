@@ -3,6 +3,8 @@ package org.acme;
 import io.quarkiverse.githubaction.Action;
 import io.quarkiverse.githubaction.Context;
 import io.quarkiverse.githubaction.Inputs;
+import jakarta.inject.Inject;
+import software.amazon.awssdk.services.s3.S3Client;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,7 +29,8 @@ public class MyAction {
 //
 //        context.print();
 //    }
-
+    @Inject
+    S3Client s3;
 
     @Action
     void action(Inputs inputs) {
