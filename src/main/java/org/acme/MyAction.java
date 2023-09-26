@@ -4,6 +4,7 @@ import io.quarkiverse.githubaction.Action;
 import io.quarkiverse.githubaction.Context;
 import io.quarkiverse.githubaction.Inputs;
 import jakarta.inject.Inject;
+import org.kohsuke.github.GitHub;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.Bucket;
@@ -38,7 +39,12 @@ public class MyAction {
 //    S3Client s3;
 
     @Action
-    void action(Inputs inputs) {
+    void action(Inputs inputs, GitHub gitHub) {
+        try {
+            System.out.println(gitHub.getMyself().getLogin());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         Map<String, String> env = System.getenv();
         System.out.println(System.getProperty("secrets.SECRET_TOKEN"));
