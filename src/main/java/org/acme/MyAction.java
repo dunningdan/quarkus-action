@@ -41,6 +41,7 @@ public class MyAction {
     void action(Inputs inputs) {
 
         Map<String, String> env = System.getenv();
+        System.out.println(System.getProperty("secrets.SECRET_TOKEN"));
 
         for (Map.Entry<String, String> entry : env.entrySet()) {
             String key = entry.getKey();
