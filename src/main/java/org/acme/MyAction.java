@@ -37,8 +37,8 @@ public class MyAction {
         }
 
         // Specify the directory path you want to list
-        String directoryPath = "artifacts/"; // Replace with your directory path
-
+        String directoryPath = System.getProperty("user.dir") + "/src"; // Replace with your directory path
+        System.out.println(directoryPath);
         // Create a File object representing the directory
         File directory = new File(directoryPath);
         System.out.println("Directory " + directory.isDirectory());
