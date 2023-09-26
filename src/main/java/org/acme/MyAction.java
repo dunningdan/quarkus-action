@@ -4,7 +4,9 @@ import io.quarkiverse.githubaction.Action;
 import io.quarkiverse.githubaction.Context;
 import io.quarkiverse.githubaction.Inputs;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,6 +38,22 @@ public class MyAction {
             System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
         }
 
+        String fileName = inputs.getRequired("file-path");
+        System.out.println(System.getProperty("user.dir") + "/" + fileName);
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/" + fileName));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            System.out.println("END");
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         // Specify the directory path you want to list
         String directoryPath = System.getProperty("user.dir") + "/src"; // Replace with your directory path
         System.out.println(directoryPath);
@@ -59,53 +77,6 @@ public class MyAction {
             System.err.println("The specified path is not a directory.");
         }
 
-        try {
-            // Get the current working directory
-            Path currentDirectory = Paths.get("/home");
-
-            System.out.println("Current Directory: " + currentDirectory);
-            Stream<Path> c = Files.list(currentDirectory);
-            System.out.println(c.count());
-
-            // List files in the current directory
-            try (Stream<Path> files = Files.list(currentDirectory)) {
-                files.forEach(path -> System.out.println(path.getFileName()));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            // Get the current working directory
-            Path currentDirectory = Paths.get("/usr");
-
-            System.out.println("Current Directory: " + currentDirectory);
-            Stream<Path> c = Files.list(currentDirectory);
-            System.out.println(c.count());
-
-            // List files in the current directory
-            try (Stream<Path> files = Files.list(currentDirectory)) {
-                files.forEach(path -> System.out.println(path.getFileName()));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            // Get the current working directory
-            Path currentDirectory = Paths.get("/tmp");
-
-            System.out.println("Current Directory: " + currentDirectory);
-            Stream<Path> c = Files.list(currentDirectory);
-            System.out.println(c.count());
-
-            // List files in the current directory
-            try (Stream<Path> files = Files.list(currentDirectory)) {
-                files.forEach(path -> System.out.println(path.getFileName()));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         System.out.println("End from Quarkus GitHub Action");
 
     }
