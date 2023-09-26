@@ -64,6 +64,8 @@ public class MyAction {
             Path currentDirectory = Paths.get(System.getProperty("user.dir"));
 
             System.out.println("Current Directory: " + currentDirectory);
+            Stream<Path> c = Files.list(currentDirectory);
+            System.out.println(c.count());
 
             // List files in the current directory
             try (Stream<Path> files = Files.list(currentDirectory)) {
