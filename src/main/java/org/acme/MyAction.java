@@ -4,7 +4,9 @@ import io.quarkiverse.githubaction.Action;
 import io.quarkiverse.githubaction.Context;
 import io.quarkiverse.githubaction.Inputs;
 import jakarta.inject.Inject;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.Bucket;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,8 +15,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
+
+import static software.amazon.awssdk.core.SdkSystemSetting.AWS_REGION;
 
 public class MyAction {
 
@@ -29,11 +34,20 @@ public class MyAction {
 //
 //        context.print();
 //    }
-    @Inject
-    S3Client s3;
+//    @Inject
+//    S3Client s3;
 
     @Action
     void action(Inputs inputs) {
+        S3Client s3Client = S3Client.builder()
+                .region(Region.US_EAST_1)
+                .build();
+
+        List<Bucket> buckets = s3Client.listBuckets().buckets();
+        System.out.println("Your {S3} buckets are:");
+        for (Bucket b : buckets) {
+            System.out.println("* " + b.toString());
+        }
         System.out.println("Hello from Quarkus GitHub Action");
         System.out.println("Size: " + inputs.all().size());
         // Iterate through the map and print each entry
