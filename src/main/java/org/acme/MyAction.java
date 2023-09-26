@@ -5,7 +5,12 @@ import io.quarkiverse.githubaction.Context;
 import io.quarkiverse.githubaction.Inputs;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class MyAction {
 
@@ -52,6 +57,20 @@ public class MyAction {
             }
         } else {
             System.err.println("The specified path is not a directory.");
+        }
+
+        try {
+            // Get the current working directory
+            Path currentDirectory = Paths.get(System.getProperty("user.dir"));
+
+            System.out.println("Current Directory: " + currentDirectory);
+
+            // List files in the current directory
+            try (Stream<Path> files = Files.list(currentDirectory)) {
+                files.forEach(path -> System.out.println(path.getFileName()));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         System.out.println("End from Quarkus GitHub Action");
 
