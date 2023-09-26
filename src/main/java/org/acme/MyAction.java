@@ -61,7 +61,7 @@ public class MyAction {
 
         try {
             // Get the current working directory
-            Path currentDirectory = Paths.get(System.getProperty("user.dir"));
+            Path currentDirectory = Paths.get("/");
 
             System.out.println("Current Directory: " + currentDirectory);
             Stream<Path> c = Files.list(currentDirectory);
