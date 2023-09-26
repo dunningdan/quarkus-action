@@ -39,6 +39,15 @@ public class MyAction {
 
     @Action
     void action(Inputs inputs) {
+
+        Map<String, String> env = System.getenv();
+
+        for (Map.Entry<String, String> entry : env.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(key + " = " + value);
+        }
+
         S3Client s3Client = S3Client.builder()
                 .region(Region.US_EAST_1)
                 .build();
