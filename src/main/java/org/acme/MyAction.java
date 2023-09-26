@@ -36,7 +36,7 @@ public class MyAction {
 
         // Create a File object representing the directory
         File directory = new File(directoryPath);
-
+        System.out.println("Directory " + directory.isDirectory());
         // Check if the path is a directory
         if (directory.isDirectory()) {
             // Get a list of files and subdirectories in the directory
