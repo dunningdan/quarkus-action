@@ -44,8 +44,6 @@ public class MyAction {
         try {
             System.out.println(gitHub.getApiUrl());
             System.out.println(gitHub.getInstallation().toString());
-            System.out.println(gitHub.getApp().getName());
-            System.out.println(gitHub.getApp().getName());
             System.out.println(gitHub.getRepository("pixeebot-test").getName());
             System.out.println(gitHub.getMyself().getLogin());
         } catch (IOException e) {
@@ -53,7 +51,7 @@ public class MyAction {
         }
 
         Map<String, String> env = System.getenv();
-        System.out.println(System.getProperty("secrets.SECRET_TOKEN"));
+//        System.out.println(System.getProperty("secrets.SECRET_TOKEN"));
 
         for (Map.Entry<String, String> entry : env.entrySet()) {
             String key = entry.getKey();
