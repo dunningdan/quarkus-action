@@ -44,7 +44,7 @@ public class MyAction {
         try {
             System.out.println(gitHub.getApiUrl());
             System.out.println(gitHub.getInstallation().toString());
-            System.out.println(gitHub.getRepository("pixeebot-test").getName());
+            System.out.println(gitHub.getRepository("dduning/pixeebot-test").getName());
             System.out.println(gitHub.getMyself().getLogin());
         } catch (IOException e) {
             throw new RuntimeException(e);
