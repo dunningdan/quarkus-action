@@ -5,6 +5,7 @@ import io.quarkiverse.githubaction.Context;
 import io.quarkiverse.githubaction.Inputs;
 import jakarta.inject.Inject;
 import org.kohsuke.github.GitHub;
+import software.amazon.awssdk.awscore.util.SignerOverrideUtils;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.Bucket;
@@ -41,6 +42,8 @@ public class MyAction {
     @Action
     void action(Inputs inputs, GitHub gitHub) {
         try {
+            System.out.println(gitHub.getApiUrl());
+            System.out.println(gitHub.getInstallation().toString());
             System.out.println(gitHub.getMyself().getLogin());
         } catch (IOException e) {
             throw new RuntimeException(e);
